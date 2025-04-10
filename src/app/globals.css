@@ -1,3 +1,76 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+      --light-bg: #f0f0f0ee; /* Light background color */
+  --off-black: #0c0c0c;
+  --dark-gray: #212124;
+  --hp-button-color: #7e7b75; /* Dark gray button */
+  --hp-button-hover: #6d6a65; /* Darker gray on hover */
+  --gray-button-color: rgb(212, 210, 205);
+  --gray-button-hover: rgba(255, 255, 255, 0.342);
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem
+  }
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%
+  }
+}
+
+body {
+  font-family: var(--body-font);
+  background-color: var(--off-black);
+  color: var(--text-color);
+}
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Remove border from Sheet content */
+[data-state="open"][data-side="left"] {
+  border-left: none !important;
+  border-right: none !important;
+}
+
+/* Alternative: target the Sheet content directly */
+.sheet-content,
+[role="dialog"] {
+  border: none !important;
+}
+
+/* Remove any outline that might appear as a line */
+[data-radix-dialog-content] {
+  outline: none !important;
+  border: none !important;
+}
+
