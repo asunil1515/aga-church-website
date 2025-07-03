@@ -173,6 +173,7 @@ export function Hero() {
             Join us every Sunday
           </p>
         </motion.div>
+
         {/* CTA Buttons */}
         <motion.div
           className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center"
@@ -180,7 +181,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2, duration: 0.8 }}
         >
-          <Link href="#visit" className="w-28 xs:w-32 sm:w-36 md:w-40">
+          <a href="/#visit" className="w-28 xs:w-32 sm:w-36 md:w-40">
             <Button
               size="lg"
               className="group relative overflow-hidden bg-white text-black w-full py-2.5 xs:py-3 sm:py-4 px-3 xs:px-4 sm:px-6 text-xs xs:text-sm sm:text-base border border-black/10 transition-all duration-300 h-9 xs:h-10 sm:h-11 md:h-12"
@@ -190,9 +191,10 @@ export function Hero() {
               </span>
               <span className="absolute inset-0 z-0 -translate-x-full bg-gradient-to-r from-black to-neutral-600 transition-transform duration-300 group-hover:translate-x-0"></span>
             </Button>
-          </Link>
+          </a>
+
           <Link
-            href="#watch"
+            href="/#sermons"
             className="inline-block w-28 xs:w-32 sm:w-36 md:w-40"
           >
             <Button
