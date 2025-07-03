@@ -43,11 +43,11 @@ export function Navbar({ variant = "default", bagItemCount = 0 }: NavbarProps) {
 
   const navItems = [
     { title: "HOME", href: "/" },
-    { title: "ABOUT", href: "/about" },
-    { title: "SERMONS", href: "/sermons" },
+    { title: "ABOUT", href: "/#about" },
+    { title: "SERMONS", href: "/#sermons" },
     { title: "DONATE", href: "/donate" },
     { title: "APPAREL", href: "/apparel" },
-    { title: "VISIT", href: "/visit" },
+    { title: "VISIT", href: "/#visit" },
   ];
 
   const NavigationContent = ({
