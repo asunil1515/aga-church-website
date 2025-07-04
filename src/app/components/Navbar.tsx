@@ -217,9 +217,10 @@ export function Navbar({ variant = "default", bagItemCount = 0 }: NavbarProps) {
         </div>
       </header>
 
-      {/* Floating Navbar - slide down effect */}
+      {/* Floating Navbar */}
       <header
         className={cn(
+          "hidden lg:block",
           "fixed top-4 left-1/2 -translate-x-1/2 z-[1000]",
           "transition-transform duration-500 ease-out",
           isScrolled ? "translate-y-0" : "-translate-y-[200%]"
