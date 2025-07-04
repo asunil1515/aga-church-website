@@ -70,7 +70,7 @@ export function Sermons() {
     }
 
     fetchLatestVideo();
-    // Refetch every 5 minutes to check for new videos/livestreams
+    // Refetch every 5 minutes for new videos/livestreams
     const interval = setInterval(fetchLatestVideo, 5 * 60 * 1000);
     return () => clearInterval(interval);
   }, []);
@@ -103,7 +103,7 @@ export function Sermons() {
                 x: isMobile ? 0 : 30,
                 y: isMobile ? 20 : 0,
               }}
-              animate={{ opacity: 1, x: 0, y: 0 }} // Changed from whileInView to animate
+              animate={{ opacity: 1, x: 0, y: 0 }}
               transition={{
                 duration: isMobile ? 0.4 : 0.6,
                 delay: isMobile ? 0.2 : 0.4,
@@ -145,7 +145,7 @@ export function Sermons() {
               </div>
             </motion.div>
 
-            {/* Video side - only reorder on mobile */}
+            {/* Video side */}
             <motion.div
               className={isMobile ? "order-2" : ""}
               initial={{
@@ -153,7 +153,7 @@ export function Sermons() {
                 x: isMobile ? 0 : -30,
                 y: isMobile ? 20 : 0,
               }}
-              animate={{ opacity: 1, x: 0, y: 0 }} // Changed from whileInView to animate
+              animate={{ opacity: 1, x: 0, y: 0 }}
               transition={{
                 duration: isMobile ? 0.4 : 0.6,
                 delay: isMobile ? 0.3 : 0.2,
@@ -208,7 +208,7 @@ export function Sermons() {
           transition={{ duration: 0.4 }}
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-20 items-center">
-            {/* Enhanced Bible Study Visual */}
+            {/* Bible Study Visual */}
             <motion.div
               className="order-2 lg:order-1"
               initial={{
@@ -216,11 +216,11 @@ export function Sermons() {
                 x: isMobile ? 0 : -30,
                 y: isMobile ? 20 : 0,
               }}
-              animate={{ opacity: 1, x: 0, y: 0 }} // Changed from whileInView to animate
+              animate={{ opacity: 1, x: 0, y: 0 }}
               transition={{ duration: isMobile ? 0.4 : 0.6, delay: 0.2 }}
             >
               <div className="relative aspect-[16/9] bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 border border-white/10 overflow-hidden group rounded-lg md:rounded-none">
-                {/* Animated background pattern - simplified for mobile */}
+                {/* Animated background pattern */}
                 <div className="absolute inset-0">
                   <div className="absolute inset-0 opacity-5">
                     {[...Array(isMobile ? 3 : 6)].map((_, i) => (
@@ -314,7 +314,7 @@ export function Sermons() {
                 x: isMobile ? 0 : 30,
                 y: isMobile ? 20 : 0,
               }}
-              animate={{ opacity: 1, x: 0, y: 0 }} // Changed from whileInView to animate
+              animate={{ opacity: 1, x: 0, y: 0 }}
               transition={{
                 duration: isMobile ? 0.4 : 0.6,
                 delay: isMobile ? 0.3 : 0.4,
@@ -373,7 +373,7 @@ export function Sermons() {
     return (
       <section
         className="relative py-16 md:py-24 lg:py-40 flex items-center justify-center"
-        style={{ backgroundColor: "#0c0c0c" }}
+        style={{ backgroundColor: "var(--off-black)" }}
       >
         <Loader2 className="w-6 h-6 md:w-8 md:h-8 text-white/50 animate-spin" />
       </section>
@@ -387,7 +387,7 @@ export function Sermons() {
       <motion.section
         id="sermons"
         className="relative py-16 md:py-24 lg:py-40"
-        style={{ backgroundColor: "#0c0c0c" }}
+        style={{ backgroundColor: "var(--off-black)" }}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: isMobile ? "-50px" : "-100px" }}

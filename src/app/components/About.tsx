@@ -16,7 +16,7 @@ const About = () => {
 
   return (
     <section
-      className="relative min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 py-16 md:py-32 px-4 flex justify-center overflow-hidden"
+      className="relative min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 py-16 md:py-24 lg:py-40 px-4 flex justify-center overflow-hidden"
       id="about"
     >
       {/* gradient background */}
@@ -83,7 +83,7 @@ const About = () => {
           >
             <div className="relative bg-white rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300 overflow-hidden h-full flex flex-col">
               {/* Subtle background accent */}
-              <div className="absolute -top-32 -right-32 w-64 h-64 bg-gray-100 rounded-full opacity-50 hidden md:block" />
+              <div className="absolute -top-32 -right-32 w-64 h-64 bg-gray-100 rounded-full opacity-50 hidden lg:block" />
 
               {/* Image */}
               <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden mb-6 md:mb-8 group">
@@ -158,7 +158,7 @@ const About = () => {
           >
             <div className="relative bg-white rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300 overflow-hidden h-full flex flex-col">
               {/* Subtle background accent */}
-              <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-gray-100 rounded-full opacity-50 hidden md:block" />
+              <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-gray-100 rounded-full opacity-50 hidden lg:block" />
 
               {/* Mobile Image */}
               <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden mb-6 md:mb-8 group lg:hidden">
