@@ -6,12 +6,8 @@
   :root {
     --clr-off-black: #0c0c0c;
     --clr-light-bg: #f0f0f0ee;
-    --clr-dark-gray: #212124;
-    --clr-hp-button: #7e7b75;
 
-    --clr-hp-button-hover: #6d6a65;
-    --clr-gray-button: rgb(212, 210, 205);
-    --clr-gray-button-hover: rgba(255, 255, 255, 0.342);
+
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }

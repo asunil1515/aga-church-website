@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { BookOpenIcon } from "lucide-react";
 
 export default function OurPastor() {
   return (
@@ -32,7 +33,7 @@ export default function OurPastor() {
         />
       </div>
 
-      {/* Main Container - matches About section container */}
+      {/* Main Container */}
       <div className="relative z-10 max-w-6xl mx-auto md:px-4 lg:px-8">
         {/* Header */}
         <motion.div
@@ -42,54 +43,57 @@ export default function OurPastor() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-wide mb-3 text-white"
-            style={{ textShadow: "0 1px 3px rgba(0,0,0,0.6)" }}
-          >
-            Meet Our Pastor
+          <div className="inline-block mb-4 md:mb-6">
+            <BookOpenIcon size={32} className="text-white/60" />
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+            <span className="text-white">MEET OUR</span>
+            <br />
+            <span className="text-white/70">PASTOR</span>
           </h2>
-          <p className="text-sm md:text-base text-white/60 max-w-2xl mx-auto">
-            Discover the heart and vision behind our spiritual leadership
-          </p>
         </motion.div>
 
-        {/* Card - matches About card width and padding */}
+        {/* Card */}
         <motion.div
-          initial={{ opacity: 0, y: 40, scale: 0.95 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 1.2 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="w-full bg-black/20 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300"
         >
           <div className="flex flex-col lg:grid lg:grid-cols-2">
-            {/* Mobile Image (below lg) */}
-            <div className="relative h-[300px] lg:hidden group overflow-hidden">
-              <Image
-                src="/pastor.jpg"
-                alt="Rev. Thomas Abraham"
-                fill
-                className="object-cover object-top grayscale-[25%] contrast-110 brightness-95 group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute top-4 left-4 w-12 md:w-16 h-12 md:h-16 border-t-2 border-l-2 border-white/40 rounded-tl-xl z-30" />
-              <div className="absolute bottom-4 right-4 w-12 md:w-16 h-12 md:h-16 border-b-2 border-r-2 border-white/40 rounded-br-xl z-30" />
+            {/* Mobile Image */}
+            <div className="relative lg:hidden pt-6 px-6 md:pt-8 md:px-8">
+              <div className="relative h-[300px] rounded-xl overflow-hidden group">
+                <Image
+                  src="/pastor.jpg"
+                  alt="Rev. Thomas Abraham"
+                  fill
+                  className="object-cover object-top grayscale-[25%] contrast-110 brightness-95 group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute top-4 left-4 w-12 md:w-16 h-12 md:h-16 border-t-2 border-l-2 border-white/40 rounded-tl-xl z-30" />
+                <div className="absolute bottom-4 right-4 w-12 md:w-16 h-12 md:h-16 border-b-2 border-r-2 border-white/40 rounded-br-xl z-30" />
+              </div>
             </div>
 
-            {/* Desktop Image (from lg and up) */}
-            <div className="relative h-[70vh] hidden lg:block group overflow-hidden">
-              <Image
-                src="/pastor.jpg"
-                alt="Rev. Thomas Abraham"
-                fill
-                className="object-cover object-top grayscale-[25%] contrast-110 brightness-95 group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/20 to-black/50 z-10" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute top-4 left-4 w-16 h-16 border-t-2 border-l-2 border-white/40 rounded-tl-xl z-30" />
-              <div className="absolute bottom-4 right-4 w-16 h-16 border-b-2 border-r-2 border-white/40 rounded-br-xl z-30" />
+            {/* Desktop Image */}
+            <div className="hidden lg:block p-6 md:p-8">
+              <div className="relative h-[700px] rounded-xl overflow-hidden group">
+                <Image
+                  src="/pastor.jpg"
+                  alt="Rev. Thomas Abraham"
+                  fill
+                  className="object-cover object-top grayscale-[25%] contrast-110 brightness-95 group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/20 to-black/50 z-10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute top-4 left-4 w-16 h-16 border-t-2 border-l-2 border-white/40 rounded-tl-xl z-30" />
+                <div className="absolute bottom-4 right-4 w-16 h-16 border-b-2 border-r-2 border-white/40 rounded-br-xl z-30" />
+              </div>
             </div>
 
-            {/* Content */}
+            {/* Text Content */}
             <div className="p-6 md:p-8 lg:p-12 flex flex-col justify-center">
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
@@ -98,18 +102,13 @@ export default function OurPastor() {
                 viewport={{ once: true }}
                 className="mb-6 md:mb-10"
               >
-                <h3
-                  className="text-xl md:text-3xl font-bold mb-3 text-white"
-                  style={{ textShadow: "0 1px 2px rgba(0,0,0,0.5)" }}
-                >
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-4">
                   REV. THOMAS ABRAHAM
+                  <div className="h-0.5 w-16 bg-white/30 mt-2" />
                 </h3>
-                <div className="flex items-center gap-4">
-                  <div className="hidden md:block h-[1px] w-12 bg-white/30" />
-                  <p className="text-white/50 text-xs tracking-[0.3em] uppercase">
-                    Lead Pastor
-                  </p>
-                </div>
+                <p className="text-white/50 text-xs tracking-[0.3em] uppercase">
+                  Lead Pastor
+                </p>
               </motion.div>
 
               <motion.div
@@ -149,7 +148,7 @@ export default function OurPastor() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
                 viewport={{ once: true }}
-                className="pb-6 md:pb-0" // bottom padding
+                className="pb-6 md:pb-0"
               >
                 <div className="flex items-center justify-center">
                   {[

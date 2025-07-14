@@ -4,6 +4,7 @@ import { Hero } from "./components/Hero";
 import Sermons from "./components/Sermons";
 import About from "./components/About";
 import Pastor from "./components/Pastor";
+import Community from "./components/Community";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Sermons />
       <About />
       <Pastor />
+      <Community />
     </div>
   );
 }

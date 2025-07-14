@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import Link from "next/link";
 import {
   CaretDoubleRightIcon,
-  CrossIcon,
   HeartIcon,
   UsersIcon,
   BookOpenIcon,
+  CompassIcon,
 } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -16,10 +16,10 @@ const About = () => {
 
   return (
     <section
-      className="relative min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 py-16 md:py-24 lg:py-40 px-4 flex justify-center overflow-hidden"
       id="about"
+      className="relative min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 py-16 md:py-24 lg:py-40 px-4 flex justify-center overflow-hidden"
     >
-      {/* gradient background */}
+      {/* Background gradients */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[-50%] left-[-50%] w-[200%] h-[200%]">
           <div
@@ -39,18 +39,19 @@ const About = () => {
         </div>
       </div>
 
-      {/* grid pattern */}
+      {/* Subtle grid pattern */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
         <div
           className="absolute inset-0"
           style={{
             backgroundImage: `linear-gradient(rgba(0,0,0,.05) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(0,0,0,.05) 1px, transparent 1px)`,
+                              linear-gradient(90deg, rgba(0,0,0,.05) 1px, transparent 1px)`,
             backgroundSize: "50px 50px",
           }}
         />
       </div>
 
+      {/* Main Content */}
       <div className="max-w-6xl mx-auto md:px-4 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
@@ -61,7 +62,7 @@ const About = () => {
           viewport={{ once: true }}
         >
           <div className="inline-block mb-4 md:mb-6">
-            <CrossIcon size={32} className="text-gray-500" />
+            <CompassIcon size={32} className="text-gray-500" />
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
@@ -71,9 +72,9 @@ const About = () => {
           </h2>
         </motion.div>
 
-        {/* Main content cards */}
+        {/* Card Grid */}
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-          {/* Left Column - About */}
+          {/* About Our Church Card */}
           <motion.div
             className="relative h-full"
             initial={{ opacity: 0, y: 30 }}
@@ -82,7 +83,6 @@ const About = () => {
             viewport={{ once: true }}
           >
             <div className="relative bg-white rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300 overflow-hidden h-full flex flex-col">
-              {/* Subtle background accent */}
               <div className="absolute -top-32 -right-32 w-64 h-64 bg-gray-100 rounded-full opacity-50 hidden lg:block" />
 
               {/* Image */}
@@ -95,11 +95,11 @@ const About = () => {
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                   priority
                 />
-                {/* Corner accents */}
                 <div className="absolute top-4 left-4 w-12 md:w-16 h-12 md:h-16 border-t-2 border-l-2 border-white/40 rounded-tl-xl" />
                 <div className="absolute bottom-4 right-4 w-12 md:w-16 h-12 md:h-16 border-b-2 border-r-2 border-white/40 rounded-br-xl" />
               </div>
 
+              {/* Content */}
               <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
                 ABOUT OUR CHURCH
                 <div className="h-0.5 w-16 bg-gray-300 mt-2" />
@@ -128,6 +128,7 @@ const About = () => {
                 )}
               </div>
 
+              {/* Link */}
               <div className="mb-4 md:mb-0 z-20">
                 <Link
                   href="/beliefs"
@@ -148,7 +149,7 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* Right Column - What to Expect */}
+          {/* What to Expect Card */}
           <motion.div
             className="relative h-full"
             initial={{ opacity: 0, y: 30 }}
@@ -157,7 +158,6 @@ const About = () => {
             viewport={{ once: true }}
           >
             <div className="relative bg-white rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300 overflow-hidden h-full flex flex-col">
-              {/* Subtle background accent */}
               <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-gray-100 rounded-full opacity-50 hidden lg:block" />
 
               {/* Mobile Image */}
@@ -169,7 +169,6 @@ const About = () => {
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                {/* Corner accents */}
                 <div className="absolute top-4 left-4 w-12 md:w-16 h-12 md:h-16 border-t-2 border-l-2 border-white/40 rounded-tl-xl" />
                 <div className="absolute bottom-4 right-4 w-12 md:w-16 h-12 md:h-16 border-b-2 border-r-2 border-white/40 rounded-br-xl" />
               </div>
@@ -182,40 +181,38 @@ const About = () => {
               <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-6 flex-grow">
                 We are a multi-generational, Spirit-filled church where people
                 from all walks of life come together to encounter God. Expect
-                Iconfelt worship, inspiring biblical teaching, and a supportive
+                heartfelt worship, inspiring biblical teaching, and a supportive
                 community that encourages growth and connection. Whether you're
                 new to the faith or have walked with Jesus for years, you'll
                 find a place to belong.
               </p>
 
-              {/* Experience Cards */}
+              {/* Experience Icons */}
               <div className="grid grid-cols-3 gap-2 md:gap-3 mb-6">
                 {[
                   { icon: HeartIcon, label: "Worship" },
                   { icon: BookOpenIcon, label: "Teaching" },
                   { icon: UsersIcon, label: "Community" },
-                ].map((item) => (
+                ].map(({ icon: Icon, label }) => (
                   <div
-                    key={item.label}
+                    key={label}
                     className="bg-gray-50 rounded-lg p-2 md:p-3 text-center"
                   >
                     <div className="w-7 h-7 md:w-8 md:h-8 mx-auto mb-1 rounded-md bg-gray-200/70 flex items-center justify-center">
-                      <item.icon
-                        size={14}
-                        className="text-gray-700 md:hidden"
-                      />
-                      <item.icon
+                      <Icon size={14} className="text-gray-700 md:hidden" />
+                      <Icon
                         size={16}
                         className="text-gray-700 hidden md:block"
                       />
                     </div>
                     <span className="text-[10px] md:text-xs text-gray-600">
-                      {item.label}
+                      {label}
                     </span>
                   </div>
                 ))}
               </div>
 
+              {/* Link */}
               <div className="mb-4 md:mb-7 z-20">
                 <Link
                   href="/#visit"
@@ -243,7 +240,6 @@ const About = () => {
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                {/* Corner accents */}
                 <div className="absolute top-4 left-4 w-16 h-16 border-t-2 border-l-2 border-white/40 rounded-tl-xl" />
                 <div className="absolute bottom-4 right-4 w-16 h-16 border-b-2 border-r-2 border-white/40 rounded-br-xl" />
               </div>
