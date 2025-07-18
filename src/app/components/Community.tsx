@@ -26,7 +26,7 @@ const images = Array.from(
 
 export default function Community() {
   const [activeButton, setActiveButton] = useState<
-    "donate" | "apparel" | "visit" | null
+    "donate" | "visit" | "visit" | null
   >(null);
   const plugin = useRef(Autoplay({ delay: 3500, stopOnInteraction: false }));
 
@@ -164,15 +164,15 @@ export default function Community() {
                 </a>
 
                 <a
-                  href="/apparel"
+                  href="/#visit"
                   className="group relative flex items-center justify-center gap-2 px-6 md:px-8 py-3 rounded-full font-semibold text-black bg-transparent border-2 border-black overflow-hidden transition-all duration-300 hover:shadow-lg"
-                  onMouseEnter={() => setActiveButton("apparel")}
+                  onMouseEnter={() => setActiveButton("visit")}
                   onMouseLeave={() => setActiveButton(null)}
                 >
-                  <span className="relative z-10">Apparel</span>
+                  <span className="relative z-10">Visit Us</span>
                   <span
                     className={`relative z-10 transition-transform duration-200 ${
-                      activeButton === "apparel" ? "translate-x-1" : ""
+                      activeButton === "visit" ? "translate-x-1" : ""
                     }`}
                   >
                     <CaretCircleRightIcon size={20} weight="bold" />

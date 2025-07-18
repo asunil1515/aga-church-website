@@ -6,6 +6,7 @@ import About from "./components/About";
 import Pastor from "./components/Pastor";
 import Community from "./components/Community";
 import Visit from "./components/Visit";
+import { Footer } from "./components/Footer";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <Pastor />
       <Community />
       <Visit />
+      <Footer />
     </div>
   );
 }
