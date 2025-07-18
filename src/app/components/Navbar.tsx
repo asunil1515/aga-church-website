@@ -1,4 +1,3 @@
-// components/layout/Navbar.tsx
 "use client";
 
 import * as React from "react";
@@ -50,8 +49,8 @@ interface MobileMenuProps {
 const navItems: NavItem[] = [
   { title: "HOME", href: "/" },
   { title: "ABOUT", href: "/#about" },
-  { title: "BELIEFS", href: "/beliefs" },
   { title: "SERMONS", href: "/#sermons" },
+  { title: "BELIEFS", href: "/beliefs" },
   { title: "DONATE", href: "/donate" },
   { title: "VISIT", href: "/#visit" },
 ];
@@ -64,7 +63,7 @@ const socialLinks = [
     ariaLabel: "YouTube Channel",
   },
   {
-    href: "https://instagram.com/amazinggraceassembly",
+    href: "https://www.instagram.com/amazinggraceig/",
     icon: BsInstagram,
     iconSize: "size-5",
     ariaLabel: "Instagram Profile",
@@ -72,12 +71,12 @@ const socialLinks = [
 ];
 
 // Social Link Component
-const SocialLink: React.FC<SocialLinkProps> = ({ 
-  href, 
-  icon: Icon, 
-  iconSize, 
+const SocialLink: React.FC<SocialLinkProps> = ({
+  href,
+  icon: Icon,
+  iconSize,
   isFloating,
-  ariaLabel 
+  ariaLabel,
 }) => (
   <Link
     href={href}
@@ -92,8 +91,7 @@ const SocialLink: React.FC<SocialLinkProps> = ({
     )}
   >
     <Icon className={cn(iconSize, "relative z-10")} />
-    
-    {/* Underline effect for regular navbar */}
+
     {!isFloating && (
       <span
         className={cn(
@@ -105,8 +103,7 @@ const SocialLink: React.FC<SocialLinkProps> = ({
         aria-hidden="true"
       />
     )}
-    
-    {/* Bubble effect for floating navbar */}
+
     {isFloating && (
       <span
         className={cn(
@@ -124,11 +121,20 @@ const SocialLink: React.FC<SocialLinkProps> = ({
   </Link>
 );
 
+// Custom handler for Instagram in floating navbar
+const openInstagram = () => {
+  window.open(
+    "https://www.instagram.com/amazinggraceig/",
+    "_blank",
+    "noopener,noreferrer"
+  );
+};
+
 // Mobile Menu Component
-const MobileMenu: React.FC<MobileMenuProps> = ({ 
-  isOpen, 
-  onOpenChange, 
-  navItems
+const MobileMenu: React.FC<MobileMenuProps> = ({
+  isOpen,
+  onOpenChange,
+  navItems,
 }) => (
   <Sheet open={isOpen} onOpenChange={onOpenChange}>
     <SheetTrigger asChild>
@@ -162,7 +168,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
     >
       <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
 
-      {/* Mobile close button */}
       <Button
         variant="ghost"
         size="icon"
@@ -180,7 +185,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
         <X />
       </Button>
 
-      {/* Mobile Navigation */}
       <nav className="flex flex-col gap-2 text-left">
         {navItems.map((item) => (
           <Link
@@ -197,7 +201,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
           </Link>
         ))}
 
-        {/* Mobile Social Icons */}
         <div className="flex gap-5 mt-2">
           {socialLinks.map((social) => (
             <Link
@@ -208,11 +211,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
               aria-label={social.ariaLabel}
               className="text-white hover:text-gray-300 transition-all duration-300"
             >
-              <social.icon 
+              <social.icon
                 className={cn(
                   social.iconSize,
                   social.icon === AiOutlineYoutube && "translate-y-[-1px]"
-                )} 
+                )}
               />
             </Link>
           ))}
@@ -223,97 +226,131 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
 );
 
 // Navigation Content Component
-const NavigationContent: React.FC<{ isFloating?: boolean }> = React.memo(({ 
-  isFloating = false 
-}) => (
-  <nav className={cn("hidden lg:flex items-center", isFloating && "lg:gap-2")}>
-    <NavigationMenu>
-      <NavigationMenuList
-        className={cn("gap-[1.85rem] space-x-0", isFloating && "lg:gap-4")}
-      >
-        {navItems.map((item) => (
-          <NavigationMenuItem key={item.href} className="relative isolate">
-            <Link
-              href={item.href}
-              className={cn(
-                "group/link",
-                "text-white no-underline inline-block relative",
-                "text-[0.9rem] transition-all duration-300 ease-in-out",
-                "hover:text-gray-350",
-                "bg-transparent hover:bg-transparent focus:bg-transparent",
-                "data-[state=open]:bg-transparent",
-                
-                // Regular navbar styles
-                !isFloating && [
-                  "py-[2.25rem] -mt-[1.1rem] -mb-[1.4rem] px-0",
-                ],
-                
-                // Floating navbar styles
-                isFloating && ["py-3 px-3", "rounded-full"]
-              )}
-            >
-              <span className="relative z-10">{item.title}</span>
-              
-              {/* Regular navbar - underline effect */}
-              {!isFloating && (
-                <span
-                  className={cn(
-                    "absolute left-1/2 -translate-x-1/2 w-0 h-[2px]",
-                    "bg-white transition-all duration-300 ease-out",
-                    "group-hover/link:w-full",
-                    "opacity-0 group-hover/link:opacity-100",
-                    "bottom-[1.4rem]"
-                  )}
-                  aria-hidden="true"
-                />
-              )}
-              
-              {/* Floating navbar - bubble effect */}
-              {isFloating && (
-                <span
-                  className={cn(
-                    "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2",
-                    "h-9 w-[calc(100%+0.75rem)]",
-                    "rounded-full",
-                    "bg-white/0 group-hover/link:bg-white/10",
-                    "scale-0 group-hover/link:scale-100",
-                    "transition-all duration-300 ease-out",
-                    "origin-center"
-                  )}
-                  aria-hidden="true"
-                />
-              )}
-            </Link>
-          </NavigationMenuItem>
-        ))}
-      </NavigationMenuList>
-    </NavigationMenu>
-
-    {/* Desktop Social Icons */}
-    <div
-      className={cn(
-        "flex gap-[1.65rem] ml-8",
-        isFloating && "lg:ml-6 gap-[1.75rem]"
-      )}
+const NavigationContent: React.FC<{ isFloating?: boolean }> = React.memo(
+  ({ isFloating = false }) => (
+    <nav
+      className={cn("hidden lg:flex items-center", isFloating && "lg:gap-2")}
     >
-      {socialLinks.map((social) => (
-        <SocialLink
-          key={social.ariaLabel}
-          {...social}
-          isFloating={isFloating}
-        />
-      ))}
-    </div>
-  </nav>
-));
+      <NavigationMenu>
+        <NavigationMenuList
+          className={cn("gap-[1.85rem] space-x-0", isFloating && "lg:gap-4")}
+        >
+          {navItems.map((item) => (
+            <NavigationMenuItem key={item.href} className="relative isolate">
+              <Link
+                href={item.href}
+                className={cn(
+                  "group/link",
+                  "text-white no-underline inline-block relative",
+                  "text-[0.9rem] transition-all duration-300 ease-in-out",
+                  "hover:text-gray-350",
+                  "bg-transparent hover:bg-transparent focus:bg-transparent",
+                  "data-[state=open]:bg-transparent",
+                  !isFloating && [
+                    "py-[2.25rem] -mt-[1.1rem] -mb-[1.4rem] px-0",
+                  ],
+                  isFloating && ["py-3 px-3", "rounded-full"]
+                )}
+              >
+                <span className="relative z-10">{item.title}</span>
 
-NavigationContent.displayName = 'NavigationContent';
+                {!isFloating && (
+                  <span
+                    className={cn(
+                      "absolute left-1/2 -translate-x-1/2 w-0 h-[2px]",
+                      "bg-white transition-all duration-300 ease-out",
+                      "group-hover/link:w-full",
+                      "opacity-0 group-hover/link:opacity-100",
+                      "bottom-[1.4rem]"
+                    )}
+                    aria-hidden="true"
+                  />
+                )}
+
+                {isFloating && (
+                  <span
+                    className={cn(
+                      "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2",
+                      "h-9 w-[calc(100%+0.75rem)]",
+                      "rounded-full",
+                      "bg-white/0 group-hover/link:bg-white/10",
+                      "scale-0 group-hover/link:scale-100",
+                      "transition-all duration-300 ease-out",
+                      "origin-center"
+                    )}
+                    aria-hidden="true"
+                  />
+                )}
+              </Link>
+            </NavigationMenuItem>
+          ))}
+        </NavigationMenuList>
+      </NavigationMenu>
+
+      {/* Desktop Social Icons */}
+      <div
+        className={cn(
+          "flex gap-[1.65rem] ml-8",
+          isFloating && "lg:ml-6 gap-[1.75rem]"
+        )}
+      >
+        {/* YouTube stays the same */}
+        <SocialLink
+          href="https://youtube.com/@amazinggraceassembly"
+          icon={AiOutlineYoutube}
+          iconSize="size-6"
+          isFloating={isFloating}
+          ariaLabel="YouTube Channel"
+        />
+
+        {/* Instagram handled separately for floating nav */}
+        {isFloating ? (
+          <a
+            href="https://www.instagram.com/amazinggraceig/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram Profile"
+            className={cn(
+              "group relative flex items-center text-white",
+              "transition-all duration-300 ease-in-out",
+              "p-3 -m-2 rounded-full"
+            )}
+          >
+            <BsInstagram className="size-5 relative z-10" />
+            <span
+              className={cn(
+                "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2",
+                "h-9 w-12",
+                "rounded-full",
+                "bg-white/0 group-hover:bg-white/10",
+                "scale-0 group-hover:scale-100",
+                "transition-all duration-300 ease-out",
+                "origin-center"
+              )}
+              aria-hidden="true"
+            />
+          </a>
+        ) : (
+          <SocialLink
+            href="https://www.instagram.com/amazinggraceig/"
+            icon={BsInstagram}
+            iconSize="size-5"
+            isFloating={false}
+            ariaLabel="Instagram Profile"
+          />
+        )}
+      </div>
+    </nav>
+  )
+);
+
+NavigationContent.displayName = "NavigationContent";
 
 // Main Navbar Component
-export function Navbar({ 
-  variant = "default", 
+export function Navbar({
+  variant = "default",
   bagItemCount = 0,
-  disableFloating = false
+  disableFloating = false,
 }: NavbarProps) {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
@@ -331,14 +368,15 @@ export function Navbar({
 
   return (
     <>
-      {/* Base Navbar */}
       <header
         className={cn(
           disableFloating ? "absolute" : "fixed",
           "top-0 w-full z-[999] bg-transparent py-1 px-5",
           "flex justify-end items-center",
           "transition-transform duration-500 ease-out",
-          !disableFloating && isScrolled ? "-translate-y-full" : "translate-y-0",
+          !disableFloating && isScrolled
+            ? "-translate-y-full"
+            : "translate-y-0",
           (variant === "opaque" || variant === "YHWH") && "lg:z-[10000]"
         )}
       >
@@ -347,7 +385,6 @@ export function Navbar({
         </div>
       </header>
 
-      {/* Floating Navbar */}
       {!disableFloating && (
         <header
           className={cn(
@@ -371,9 +408,8 @@ export function Navbar({
         </header>
       )}
 
-      {/* Mobile Menu */}
-      <MobileMenu 
-        isOpen={isMobileMenuOpen} 
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
         onOpenChange={setIsMobileMenuOpen}
         navItems={navItems}
       />

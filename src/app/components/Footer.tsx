@@ -10,8 +10,8 @@ const footerLinks = [
   { href: "/", label: "HOME" },
   { href: "/#about", label: "ABOUT" },
   { href: "/#sermons", label: "SERMONS" },
+  { href: "/beliefs", label: "BELIEFS" },
   { href: "/donate", label: "DONATE" },
-  { href: "/apparel", label: "APPAREL" },
   { href: "/#visit", label: "VISIT" },
 ];
 
