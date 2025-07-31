@@ -1,20 +1,38 @@
 import type { Metadata } from "next";
-import { BagProvider } from './components/Bag'; // Adjusted import path
-import { Analytics } from "@vercel/analytics/react"
-import { SpeedInsights } from "@vercel/speed-insights/next"
-import { Montserrat } from 'next/font/google'
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Montserrat } from "next/font/google";
+import { Toaster } from "sonner";
+import ScrollHandler from "./ui/scrollhandler"; // Import the new component
 import "./globals.css";
-import Head from 'next/head';  // Import Head from next/head
 
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-montserrat",
+});
 
-const montserrat = Montserrat({ 
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-montserrat',
-})
 export const metadata: Metadata = {
+  // For search engines
   title: "AGA",
   description: "A welcoming church community focused on faith and fellowship.",
+  // For shared links
+  openGraph: {
+    title: "AGA | Worship. Word. Community.",
+    description: "Join our community of faith and fellowship.",
+    url: "https://www.agachurch.org",
+    siteName: "AGA Church",
+    images: [
+      {
+        url: "/logo.jpg",
+        width: 1200,
+        height: 630,
+        alt: "AGA Logo",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -23,19 +41,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${montserrat.variable}`}>
+    <html lang="en" className={montserrat.variable}>
       <body className={montserrat.className}>
-        <BagProvider>
-          <Head>
-            {/* Open Graph meta tags for homepage */}
-            <meta property="og:title" content="Welcome to AGA Church" />
-            <meta property="og:description" content="Join our community of faith and fellowship." />
-            <meta property="og:image" content="https://www.agachurch.org/images/BG1.jpg" />
-            <meta property="og:url" content="https://www.agachurch.org" />
-            <meta property="og:type" content="website" />
-          </Head>
-          <main>{children}</main>  {/* Page-specific content here */}
-        </BagProvider>
+        <Analytics />
+        <SpeedInsights />
+        <Toaster />
+        <main>
+          <ScrollHandler>{children}</ScrollHandler>
+        </main>
       </body>
     </html>
   );

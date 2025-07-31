@@ -1,33 +1,45 @@
 // pages/api/youtube/latest.ts
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiRequest, NextApiResponse } from "next";
+
+interface VideoData {
+  isLive: boolean;
+  videoId: string;
+  title: string;
+  thumbnail: string;
+  publishedAt: string;
+}
+
+interface CacheData {
+  data: VideoData;
+  timestamp: number;
+}
 
 // In-memory cache
-let cache: {
-  data: any;
-  timestamp: number;
-} | null = null;
+let cache: CacheData | null = null;
 
 const CACHE_DURATION = 60 * 60 * 1000; // 1 hour in milliseconds
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse<VideoData | { error: string }>
 ) {
   try {
     // Check cache first
     if (cache && Date.now() - cache.timestamp < CACHE_DURATION) {
-      console.log('Returning cached data');
+      console.log("Returning cached data");
       return res.status(200).json(cache.data);
     }
 
     const apiKey = process.env.YOUTUBE_API_KEY;
     const channelId = process.env.YOUTUBE_CHANNEL_ID;
 
-    console.log('API Key exists:', !!apiKey);
-    console.log('Channel ID exists:', !!channelId);
+    console.log("API Key exists:", !!apiKey);
+    console.log("Channel ID exists:", !!channelId);
 
     if (!apiKey || !channelId) {
-      return res.status(500).json({ error: 'YouTube API configuration missing' });
+      return res
+        .status(500)
+        .json({ error: "YouTube API configuration missing" });
     }
 
     // Use the more efficient 'list' endpoint (costs only 1 unit)
@@ -37,15 +49,16 @@ export default async function handler(
 
     if (!channelResponse.ok) {
       const error = await channelResponse.json();
-      console.error('YouTube API Error:', error);
-      throw new Error('Failed to fetch channel data');
+      console.error("YouTube API Error:", error);
+      throw new Error("Failed to fetch channel data");
     }
 
     const channelData = await channelResponse.json();
-    const uploadsPlaylistId = channelData.items[0]?.contentDetails?.relatedPlaylists?.uploads;
+    const uploadsPlaylistId =
+      channelData.items[0]?.contentDetails?.relatedPlaylists?.uploads;
 
     if (!uploadsPlaylistId) {
-      throw new Error('Could not find uploads playlist');
+      throw new Error("Could not find uploads playlist");
     }
 
     // Get latest video from uploads playlist (costs 1 unit)
@@ -55,40 +68,41 @@ export default async function handler(
 
     if (!videosResponse.ok) {
       const error = await videosResponse.json();
-      console.error('YouTube API Error:', error);
-      throw new Error('Failed to fetch videos');
+      console.error("YouTube API Error:", error);
+      throw new Error("Failed to fetch videos");
     }
 
     const videosData = await videosResponse.json();
     const latestVideo = videosData.items[0];
 
     if (!latestVideo) {
-      return res.status(404).json({ error: 'No videos found' });
+      return res.status(404).json({ error: "No videos found" });
     }
 
-    const videoData = {
+    const videoData: VideoData = {
       isLive: false, // To check live status would require another API call
       videoId: latestVideo.snippet.resourceId.videoId,
       title: latestVideo.snippet.title,
-      thumbnail: latestVideo.snippet.thumbnails.maxres?.url || 
-                 latestVideo.snippet.thumbnails.high?.url ||
-                 latestVideo.snippet.thumbnails.medium?.url,
-      publishedAt: latestVideo.snippet.publishedAt
+      thumbnail:
+        latestVideo.snippet.thumbnails.maxres?.url ||
+        latestVideo.snippet.thumbnails.high?.url ||
+        latestVideo.snippet.thumbnails.medium?.url,
+      publishedAt: latestVideo.snippet.publishedAt,
     };
 
     // Cache the result
     cache = {
       data: videoData,
-      timestamp: Date.now()
+      timestamp: Date.now(),
     };
 
-    console.log('Successfully fetched and cached video data');
+    console.log("Successfully fetched and cached video data");
     return res.status(200).json(videoData);
-
   } catch (error) {
-    console.error('YouTube API Error:', error);
+    console.error("YouTube API Error:", error);
     return res.status(500).json({
-      error: error instanceof Error ? error.message : 'Failed to fetch video data'
+      error:
+        error instanceof Error ? error.message : "Failed to fetch video data",
     });
   }
 }

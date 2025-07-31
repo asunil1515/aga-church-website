@@ -7,7 +7,6 @@
     --clr-off-black: #0c0c0c;
     --clr-light-bg: #f0f0f0ee;
 
-
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
@@ -72,5 +71,59 @@ body {
 }
 
 html {
-  scroll-behavior: smooth; /* Enables smooth scrolling for anchor links */
+  scroll-behavior: smooth;
+}
+
+@keyframes realheartbeat {
+  0% {
+    transform: scale(1);
+  }
+  12% {
+    transform: scale(0.86);
+  }
+  20% {
+    transform: scale(1.36);
+  }
+  28% {
+    transform: scale(0.9);
+  }
+  34% {
+    transform: scale(1.16);
+  }
+  42% {
+    transform: scale(0.98);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.animate-heartbeat {
+  animation: realheartbeat 1.03s linear infinite;
+}
+
+.fade-in-opacity {
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.fade-in-opacity.visible {
+  opacity: 1;
+}
+
+@keyframes pulse-wave {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+  }
+}
+.animate-pulse-wave {
+  animation: pulse-wave 2.1s ease-out infinite;
 }
